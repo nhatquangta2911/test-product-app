@@ -1,0 +1,89 @@
+<div class="p-4 pt-5 mt-5">
+  <div
+    class="example-form d-flex flex-row justify-content-between align-items-center"
+  >
+    <div class="p-3 d-flex flex-column">
+      <h3 class="mb-1">
+        {{ type === 'add' ? 'Add New Product' : 'Update Product' }}
+      </h3>
+      <span *ngIf="type === 'update'"
+        ><span class="font-weight-bold mr-1">{{ product?.code }}</span>
+        {{ product?.name }}</span
+      >
+    </div>
+    <button
+      *ngIf="type === 'update'"
+      mat-stroked-button
+      class="text-white bg-danger"
+      (click)="onDeleteProduct(product?.code)"
+    >
+      Delete
+    </button>
+  </div>
+  <form class="example-form p-3 mt-3" [formGroup]="addProductForm">
+    <mat-form-field class="example-full-width">
+      <mat-label>Code</mat-label>
+      <input
+        type="text"
+        matInput
+        required
+        formControlName="code"
+        placeholder="Ex. P101"
+      />
+      <mat-error *ngIf="addProductForm.get('code').hasError('required')">
+        Please enter a valid code
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Name</mat-label>
+      <input type="text" matInput formControlName="name" required />
+      <mat-error *ngIf="addProductForm.get('name').hasError('required')">
+        Please enter a valid name
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Category</mat-label>
+      <input type="text" matInput formControlName="category" />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Brand</mat-label>
+      <input type="text" matInput formControlName="brand" />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Type</mat-label>
+      <input type="text" matInput formControlName="type" />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Description</mat-label>
+      <textarea
+        class="custom-textarea"
+        type="text"
+        matInput
+        formControlName="description"
+      ></textarea>
+    </mat-form-field>
+    <div class="d-flex justify-content-end mt-3">
+      <button
+        mat-flat-button
+        type="submit"
+        color="primary"
+        [disabled]="
+          (type === 'update' && !hasFormChanged()) || !addProductForm.valid
+        "
+        (click)="onSubmit()"
+      >
+        {{ type === 'add' ? 'Add' : 'Save' }}
+      </button>
+      <button
+        *ngIf="type === 'update'"
+        mat-button
+        [disabled]="!hasFormChanged()"
+        (click)="onReset()"
+      >
+        Reset
+      </button>
+
+      <button mat-button (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+</div>

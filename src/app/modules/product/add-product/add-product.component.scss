@@ -1,0 +1,29 @@
+.example-form {
+  min-width: 150px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+mat-label {
+  margin-right: 10px;
+}
+
+.custom-textarea {
+  max-height: 250px;
+}
+
+button {
+  margin: 0 2px;
+}
+
+@media only screen and (max-width: 468px) {
+  .example-form {
+    min-width: 150px;
+    max-width: 300px;
+    width: 100%;
+  }
+}

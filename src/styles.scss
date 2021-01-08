@@ -1,0 +1,43 @@
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import 'node_modules/bootstrap/scss/bootstrap';
+
+$screen_sm: 480px;
+$screen_md: 768px;
+$screen_lg: 1014px;
+$screen_xl: 1336px;
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+html,
+body {
+  font-size: 14px;
+}
+
+@media only screen and (max-width: $screen_md) {
+  html,
+  body {
+    font-size: 12px;
+  }
+}
+
+.snackbar-success {
+  background-color: rgba(24, 206, 15, 0.8);
+  color: #ffffff;
+}
+
+.snackbar-info {
+  background-color: rgba(44, 168, 255, 0.8);
+  color: #ffffff;
+}
+
+.snackbar-warning {
+  background-color: rgba(255, 230, 0, 0.8);
+  color: #ffffff;
+}
+
+.snackbar-danger {
+  background-color: rgba(255, 0, 0, 0.8);
+  color: #ffffff;
+}

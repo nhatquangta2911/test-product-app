@@ -1,0 +1,71 @@
+<div class="p-4 pt-5 mt-5">
+  <div class="p-3 d-flex flex-row align-items-center justify-content-between">
+    <h3 class="mb-0">Product List</h3>
+    <button mat-flat-button color="primary" (click)="onAddProduct()">
+      Add Product
+    </button>
+  </div>
+  <mat-table
+    #table
+    [dataSource]="dataSource"
+    matSort
+    class="mat-cell mb-3"
+    active
+  >
+    <ng-container matColumnDef="code" class="pr-2">
+      <mat-header-cell *matHeaderCellDef>Code </mat-header-cell>
+      <mat-cell *matCellDef="let row; let i = index">{{ row.code }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Name </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="pr-2">
+        <span class="text-truncate" [title]="row.name">
+          {{ row.name }}
+        </span>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef>Description </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="pr-2">
+        <span class="text-truncate" [title]="row.description">
+          {{ row.description }}
+        </span>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <mat-header-cell class="pr-0" *matHeaderCellDef>Actions </mat-header-cell>
+      <mat-cell *matCellDef="let row; let i = index" class="pl-2">
+        <button
+          mat-flat-button
+          class="bg-warning mr-2 text-white"
+          (click)="onUpdateProduct(row)"
+        >
+          View
+        </button>
+        <button mat-button color="warn" (click)="onDeleteProduct(row.code)">
+          Delete
+        </button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"> </mat-header-row>
+    <mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      [style.cursor]="'pointer'"
+      matRipple
+    >
+    </mat-row>
+  </mat-table>
+  <div
+    class="no-results pl-4 py-3"
+    [style.display]="dataSource.data?.length == 0 ? '' : 'none'"
+  >
+    No results
+  </div>
+  <mat-paginator
+    #paginator
+    showFirstLastButtons
+    [length]="20"
+    [pageSizeOptions]="[5, 10, 20]"
+  >
+  </mat-paginator>
+</div>
